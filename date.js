@@ -31,8 +31,9 @@
  * 
  */
 function getDayOfTheWeek(date) {
-    // Your Code Here!
-    return "";
+    let dayIndex = date.getDay();
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return days[dayIndex];
 }
 
 
@@ -77,12 +78,15 @@ function getDayOfTheWeek(date) {
  * 
  */
 function getFormattedDate(date) {
-    let month = date.getMonth();
-    // etc...
-    // Your Code Here!
-    return `${month}/ etc...`;
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let year = date.getFullYear().toString().substr(-2);
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let timeOfDay = hour < 12 ? "am" : "pm";
+    hour = hour > 12 ? hour % 12: hour === 0 ? 12 : hour;
+    return `${month}/${day}/${year} - ${hour}:${min}${timeOfDay}`;
 }
-
 
 
 /**
@@ -113,10 +117,19 @@ function getFormattedDate(date) {
  * 
  */
 function getDaysAgoString(date) {
-    // Your Code Here!
-    return "";
+    let today = new Date();
+    let diff = today.getTime() - date.getTime();
+    let dayTime = 1000 * 60 * 60 * 24;
+    let dayDiff = Math.floor(diff / dayTime);
+    let timeAgo = `${dayDiff} days ago`;
+    if (dayDiff === 0) {
+        timeAgo = "Today";
+    }
+    if (dayDiff === 1) {
+        timeAgo = "Yesterday";
+    }
+    return timeAgo;
 }
-
 
 /* 
    -------TESTS---------------------------------------------------------------
