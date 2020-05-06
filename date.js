@@ -1,6 +1,7 @@
 /*
     Date Practice
-
+    
+    Changed something to make make a pull request
     These are all common problems you may encounter when using Date for a website.
 
     Complete each of the following functions according to the description in the comment
@@ -32,7 +33,10 @@
  */
 function getDayOfTheWeek(date) {
     // Your Code Here!
-    return "";
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    let currentday = date.getDay()
+
+    return daysOfWeek[currentday];
 }
 
 
@@ -78,9 +82,24 @@ function getDayOfTheWeek(date) {
  */
 function getFormattedDate(date) {
     let month = date.getMonth();
-    // etc...
-    // Your Code Here!
-    return `${month}/ etc...`;
+    let day = date.getDate();
+    let fullYear = date.getFullYear()
+    let year = String(fullYear).slice(2)
+    let hour = date.getHours();
+    let aa = "am" 
+    let minute = date.getMinutes();
+    if (hour > 12) {
+        hour = hour % 12
+        aa = "pm"
+    } else if (hour === 0) {
+        hour = 12
+        aa = "am"
+    } else if (hour === 12) {
+        aa = "pm"
+    }
+    
+
+    return `${month}/${day}/${year} - ${hour}:${minute}${aa}`;
 }
 
 
@@ -113,8 +132,20 @@ function getFormattedDate(date) {
  * 
  */
 function getDaysAgoString(date) {
-    // Your Code Here!
-    return "";
+    let today = new Date();
+    let diff = today.getTime() - date.getTime();
+    let dayTime = 1000 * 60 * 60 * 24;
+    let dayDiff = Math.floor(diff / dayTime);
+    let timeAgo = `${dayDiff} days ago`;
+
+    if (dayDiff === 0) {
+        return "Today"
+    } if (dayDiff === 1) {
+        return "Yesterday"
+    } else {
+        return timeAgo
+    }
+
 }
 
 
